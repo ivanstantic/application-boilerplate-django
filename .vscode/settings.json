@@ -1,0 +1,97 @@
+{
+    // Editor
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.tabSize": 4,
+        "editor.rulers": [
+            119
+        ]
+    },
+    "[javascript]": {
+        "editor.tabSize": 2
+    },
+    "[css]": {
+        "editor.tabSize": 2
+    },
+    "[html]": {
+        "editor.tabSize": 4
+    },
+    "[django-html]": {
+        "editor.tabSize": 4
+    },
+
+    // Files ignored by vscode (in sidebar)
+    "files.exclude": {
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/__pycache__": true,
+        "**/.mypy_cache": true,
+        "**/.pytest_cache": true,
+        "**/.history": true,
+        "**/.idea": true,
+        "**/*.py[co]": true
+    },
+
+    /*
+    Python
+     * Requires python plugin to be installed in vscode (ms-python.python).
+     * Requires virtual environment called `.venv` in project root dir
+     * with installed dependencies listed in `dev-requirements.txt`.
+     * `pip install -r dev-requirements.txt`
+    */
+    "python.defaultInterpreterPath": ".venv/bin/python",
+    "python.testing.pytestEnabled": true,
+    "python.testing.pytestArgs": [
+        "-W", "ignore::DeprecationWarning", "backend/"
+    ],
+    "pylint.args": [
+        "--load-plugins=pylint_django",
+        "--init-hook",
+        "import sys; sys.path.append('${workspaceFolder}/backend')",
+        "--rcfile",
+        "${workspaceFolder}/backend/.pylintrc"
+    ],
+    "flake8.args": ["--config=${workspaceFolder}/backend/.flake8"],
+    "mypy-type-checker.args": [
+        "--config-file", "${workspaceFolder}/backend/mypy.ini"
+    ],
+    "autoDocstring.docstringFormat": "google",
+    "black-formatter.args": [
+        "--line-length",
+        "119",
+        "--target-version",
+        "py311"
+    ],
+
+    /*
+    JS
+     * Requires ESLint vscode plugin to be installed (dbaeumer.vscode-eslint).
+    */
+    "eslint.enable": true,
+    "eslint.quiet": false,
+    "eslint.debug": true,
+    "eslint.format.enable": true,
+    "eslint.workingDirectories": [
+        "./frontend"
+    ],
+    "eslint.options": {
+        "overrideConfigFile": ".eslintrc"
+    },
+
+    /*
+    TailwindCSS suppport
+     * Requires Tailwind CSS IntelliSense vscode plugin to be installed (bradlc.vscode-tailwindcss).
+    */
+    "files.associations": {
+        "*.css": "css"
+    },
+    "css.customData": [".vscode/tailwind.json"],
+    "tailwindCSS.classAttributes": [
+        "class",
+        "className",
+        ".*Style*", // Add ".*Styles*" (or whatever matches your naming scheme)
+        ".*Styles*" // Add ".*Styles*" (or whatever matches your naming scheme)
+    ]
+}
